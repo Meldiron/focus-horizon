@@ -1,0 +1,54 @@
+{
+	"projectId": "focus-horizon",
+	"projectName": "Focus Horizon",
+	"databases": [
+		{
+			"$id": "main",
+			"name": "main",
+			"$createdAt": "2024-05-25T17:14:52.569+00:00",
+			"$updatedAt": "2024-05-25T17:14:52.569+00:00",
+			"enabled": true
+		}
+	],
+	"collections": [
+		{
+			"$id": "forestData",
+			"$permissions": [],
+			"databaseId": "main",
+			"name": "forestData",
+			"enabled": true,
+			"documentSecurity": false,
+			"attributes": [
+				{
+					"key": "minutes",
+					"type": "integer",
+					"status": "available",
+					"error": "",
+					"required": true,
+					"array": false,
+					"min": 0,
+					"max": 9223372036854776000,
+					"default": null
+				}
+			],
+			"indexes": []
+		}
+	],
+	"functions": [
+		{
+			"$id": "fetchForestData",
+			"name": "fetchForestData",
+			"runtime": "node-18.0",
+			"execute": [],
+			"events": [],
+			"schedule": "* * * * *",
+			"timeout": 15,
+			"enabled": true,
+			"logging": true,
+			"entrypoint": "src/main.js",
+			"commands": "npm install",
+			"ignore": ["node_modules", ".npm"],
+			"path": "functions/fetchForestData"
+		}
+	]
+}
