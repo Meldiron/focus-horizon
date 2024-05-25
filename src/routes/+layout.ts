@@ -4,6 +4,6 @@ import type { LayoutLoad } from './$types';
 export let ssr = false;
 
 export const load: LayoutLoad = async () => {
-	const document = await databases.getDocument('main', 'forestData', 'g');
+	const document = await databases.getDocument('main', 'forestData', '4974446');
 	return { document };
 };
