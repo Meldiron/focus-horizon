@@ -3,11 +3,6 @@
 - Different URLs for different players
 - all colors support, pink, orange, red, ..
 
-Me = 4974446
-Anet = 8328439
-
-curl 'https://c88fef96.forestapp.cc/api/v1/users/8328439/profile'
-
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).

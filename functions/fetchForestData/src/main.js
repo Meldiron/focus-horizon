@@ -9,24 +9,28 @@ export default async ({ req, res, log, error }) => {
 
   const databases = new Databases(client);
 
-  const forestId = '8328439';
+  const forests = [ "4974446" ]; // 8328439
 
-  const response = await Axios({
-    method: 'GET',
-    url: 'https://c88fef96.forestapp.cc/api/v1/users/' + forestId + '/profile',
-  });
-
-  const minutes = response.data.total_minute;
-
-  try {
-    await databases.updateDocument('main', 'forestData', forestId, {
-      minutes,
+  for(const forestId of forests) {
+    const response = await Axios({
+      method: 'GET',
+      url: 'https://c88fef96.forestapp.cc/api/v1/users/' + forestId + '/profile',
     });
-  } catch (err) {
-    await databases.createDocument('main', 'forestData', forestId, {
-      minutes,
-    });
+  
+    const minutes = response.data.total_minute;
+  
+    try {
+      await databases.updateDocument('main', 'forestData', forestId, {
+        minutes,
+      });
+    } catch (err) {
+      await databases.createDocument('main', 'forestData', forestId, {
+        minutes,
+      });
+    }
   }
+
+ 
 
   res.send('OK');
 };
