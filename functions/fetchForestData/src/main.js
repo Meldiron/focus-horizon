@@ -30,7 +30,5 @@ export default async ({ req, res, log, error }) => {
     }
   }
 
- 
-
-  res.send('OK');
+  return res.send('OK');
 };

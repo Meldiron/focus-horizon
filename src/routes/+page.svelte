@@ -5,7 +5,7 @@
 
 	export let data: PageData;
 
-	const progressMinutes = data.document.minutes - 25011;
+	const progressMinutes = data.document.minutes - 260; // - 25011
 	const progressMeters = Math.floor(progressMinutes / 3);
 
 	const progressUnit = progressMeters > 9999 ? 'Km' : 'Meters';
