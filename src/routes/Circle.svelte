@@ -133,13 +133,18 @@
 				{#each users as user}
 					<button
 						on:click={() => toggleLongName(user.name)}
-						class="w-[max-content] text-[#010434] bg-[#ffffff] font-bold rounded-full text-sm p-2 px-3 text-center border-[#dadbe0] border-[2px]"
+						class={`${longNames.includes(user.name) ? 'rounded-lg p-2 py-1' : 'rounded-full p-2 px-3 '} w-[max-content] text-[#010434] bg-[#ffffff] font-bold text-sm text-center border-[#dadbe0] border-[2px]`}
 					>
 						<div class="relative w-[fit-content]">
 							<p>{longNames.includes(user.name) ? user.name : getShortName(user.name)}</p>
-							{#if isWinner(user, users)}
+							{#if longNames.includes(user.name)}
+								<p class="-mt-1 text-xs text-start text-[#bcbdc6]">1245 m</p>
+							{/if}
+							{#if isWinner(user, users) && !longNames.includes(user.name)}
 								<div class="absolute left-0 top-0">
-									<p class="transform -translate-y-3.5 -translate-x-2 text-lg rotate-[-15deg]">
+									<p
+										class="transform translate-y-[-16px] translate-x-[-7px] text-lg rotate-[-10deg]"
+									>
 										👑
 									</p>
 								</div>

@@ -9,7 +9,11 @@ export default async ({ req, res, log, error }) => {
 
   const databases = new Databases(client);
 
-  const forests = processs.env.FOREST_IDS.split(',');
+  let forests = process.env.FOREST_IDS.split(',');
+
+  if (req.bodyRaw) {
+    forests = req.bodyRaw.split(',');
+  }
 
   for (const forestId of forests) {
     const response = await Axios({
@@ -53,7 +57,6 @@ export default async ({ req, res, log, error }) => {
         userId: forestId,
         name,
         minutes: minutes - minutesBefore,
-        newMeters: Math.floor(minutes / 3),
       });
     }
   }

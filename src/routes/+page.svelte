@@ -197,8 +197,8 @@
 		}
 
 		return data.documents.filter((d) => {
-			const hasCurrent = d.meters >= step * 3;
-			const hasNext = d.meters >= nextStep * 3;
+			const hasCurrent = d.meters >= step;
+			const hasNext = d.meters >= nextStep;
 
 			return hasCurrent && !hasNext;
 		});
@@ -265,7 +265,7 @@
 			<p class="text-white">{currentSection.title}</p>
 		</div>
 		<div class="col-span-4 text-center flex flex-col h-full items-center justify-center">
-			<p class="text-md -mt-1 text-[#ffffff] font-bold">Matej Bačo</p>
+			<p class="text-md -mt-1 text-[#ffffff] font-bold">{data.document.name}</p>
 			<p class="text-[#52656d] font-semibold text-2xl">
 				<span class="text-white">{progressUnitDistance}</span>
 				{progressUnit}

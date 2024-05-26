@@ -71,8 +71,11 @@
 				{timeDifference(Date.now(), new Date(activity.$createdAt).getTime())}
 			</p>
 			<p class="text-lg mt-1">
-				<span class="text-white">{activity.name}</span> focused for {activity.minutes} minutes and earned
-				<span class="text-white">{Math.floor(activity.minutes / 3)} meters</span>.
+				<span class="text-white break-keep" style="white-space:nowrap;">{activity.name}</span> was
+				focused for {activity.minutes} minutes and earned
+				<span class="text-white break-keep" style="white-space:nowrap;"
+					>{Math.floor(activity.minutes / 3)} meters</span
+				>.
 			</p>
 		</div>
 	{/each}

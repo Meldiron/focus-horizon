@@ -16,6 +16,8 @@ export const load: LayoutLoad = async ({ url }) => {
 		};
 	});
 
+	console.log(user);
+
 	return {
 		document: response.documents.find((d) => d.name === user) ?? {
 			name: 'No user',
