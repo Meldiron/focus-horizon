@@ -23,6 +23,40 @@
 	const unit = distance > 9999 ? 'Km' : 'Meters';
 	const unitedDistance = distance > 9999 ? distance / 1000 : distance;
 
+	let longNames: string[] = [];
+	function toggleLongName(name: string) {
+		if (longNames.includes(name)) {
+			longNames = longNames.filter((n) => n !== name);
+			longNames = longNames;
+		} else {
+			longNames.push(name);
+			longNames = longNames;
+		}
+	}
+
+	function isWinner(user: any, users: any[]) {
+		return user.name === 'annnnyyýya';
+	}
+	/*
+	function isWinner(user: any, users: any[]) {
+		let maxMeters: any = null;
+		let maxIndex: any = null;
+
+		users.forEach((u, index) => {
+			if(maxMeters === null || u.meters > maxMeters) {
+				maxMeters = u.meters;
+				maxIndex = index;
+			}
+		})
+
+		if(user.name === users[maxIndex].name) {
+			return true;
+		}
+
+		return false;
+	}
+	*/
+
 	function getShortName(name: string) {
 		if (name.includes(' ')) {
 			const parts = name.split(' ');
@@ -97,11 +131,21 @@
 		{#if users.length > 0}
 			<div class="flex gap-1 absolute bottom-[calc(100%-14px)]">
 				{#each users as user}
-					<div
-						class=" text-[#010434] bg-[#ffffff] font-bold rounded-full text-sm p-2 px-3 text-center border-[#dadbe0] border-[2px]"
+					<button
+						on:click={() => toggleLongName(user.name)}
+						class="w-[max-content] text-[#010434] bg-[#ffffff] font-bold rounded-full text-sm p-2 px-3 text-center border-[#dadbe0] border-[2px]"
 					>
-						{getShortName(user.name)}
-					</div>
+						<div class="relative w-[fit-content]">
+							<p>{longNames.includes(user.name) ? user.name : getShortName(user.name)}</p>
+							{#if isWinner(user, users)}
+								<div class="absolute left-0 top-0">
+									<p class="transform -translate-y-3.5 -translate-x-2 text-lg rotate-[-15deg]">
+										👑
+									</p>
+								</div>
+							{/if}
+						</div>
+					</button>
 				{/each}
 			</div>
 		{/if}

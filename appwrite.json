@@ -1,128 +1,124 @@
 {
-	"projectId": "focus-horizon",
-	"projectName": "Focus Horizon",
-	"databases": [
-		{
-			"$id": "main",
-			"name": "main",
-			"$createdAt": "2024-05-25T17:14:52.569+00:00",
-			"$updatedAt": "2024-05-25T17:14:52.569+00:00",
-			"enabled": true
-		}
-	],
-	"collections": [
-		{
-			"$id": "forestData",
-			"$permissions": ["read(\"any\")"],
-			"databaseId": "main",
-			"name": "forestData",
-			"enabled": true,
-			"documentSecurity": false,
-			"attributes": [
-				{
-					"key": "minutes",
-					"type": "integer",
-					"status": "available",
-					"error": "",
-					"required": true,
-					"array": false,
-					"min": 0,
-					"max": 9223372036854776000,
-					"default": null
-				},
-				{
-					"key": "initMinutes",
-					"type": "integer",
-					"status": "available",
-					"error": "",
-					"required": true,
-					"array": false,
-					"min": 0,
-					"max": 9223372036854776000,
-					"default": null
-				},
-				{
-					"key": "name",
-					"type": "string",
-					"status": "available",
-					"error": "",
-					"required": false,
-					"array": false,
-					"size": 255,
-					"default": "Unnamed"
-				}
-			],
-			"indexes": []
-		},
-		{
-			"$id": "audit",
-			"$permissions": ["read(\"any\")"],
-			"databaseId": "main",
-			"name": "audit",
-			"enabled": true,
-			"documentSecurity": false,
-			"attributes": [
-				{
-					"key": "userId",
-					"type": "string",
-					"status": "available",
-					"error": "",
-					"required": true,
-					"array": false,
-					"size": 255,
-					"default": null
-				},
-				{
-					"key": "name",
-					"type": "string",
-					"status": "available",
-					"error": "",
-					"required": true,
-					"array": false,
-					"size": 255,
-					"default": null
-				},
-				{
-					"key": "minutes",
-					"type": "integer",
-					"status": "available",
-					"error": "",
-					"required": true,
-					"array": false,
-					"min": 0,
-					"max": 9223372036854776000,
-					"default": null
-				},
-				{
-					"key": "newMeters",
-					"type": "integer",
-					"status": "available",
-					"error": "",
-					"required": true,
-					"array": false,
-					"min": 0,
-					"max": 9223372036854776000,
-					"default": null
-				}
-			],
-			"indexes": []
-		}
-	],
-	"functions": [
-		{
-			"$id": "fetchForestData",
-			"name": "fetchForestData",
-			"runtime": "node-18.0",
-			"execute": [],
-			"events": [],
-			"schedule": "* * * * *",
-			"timeout": 15,
-			"enabled": true,
-			"logging": true,
-			"entrypoint": "src/main.js",
-			"commands": "npm install",
-			"ignore": ["node_modules", ".npm"],
-			"path": "functions/fetchForestData"
-		}
-	]
+    "projectId": "focus-horizon",
+    "projectName": "Focus Horizon",
+    "databases": [
+        {
+            "$id": "main",
+            "name": "main",
+            "$createdAt": "2024-05-25T17:14:52.569+00:00",
+            "$updatedAt": "2024-05-25T17:14:52.569+00:00",
+            "enabled": true
+        }
+    ],
+    "collections": [
+        {
+            "$id": "forestData",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "main",
+            "name": "forestData",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "minutes",
+                    "type": "integer",
+                    "status": "available",
+                    "error": "",
+                    "required": true,
+                    "array": false,
+                    "min": 0,
+                    "max": 9223372036854776000,
+                    "default": null
+                },
+                {
+                    "key": "initMinutes",
+                    "type": "integer",
+                    "status": "available",
+                    "error": "",
+                    "required": true,
+                    "array": false,
+                    "min": 0,
+                    "max": 9223372036854776000,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "error": "",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": "Unnamed"
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "audit",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "main",
+            "name": "audit",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "userId",
+                    "type": "string",
+                    "status": "available",
+                    "error": "",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "error": "",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "minutes",
+                    "type": "integer",
+                    "status": "available",
+                    "error": "",
+                    "required": true,
+                    "array": false,
+                    "min": 0,
+                    "max": 9223372036854776000,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        }
+    ],
+    "functions": [
+        {
+            "$id": "fetchForestData",
+            "name": "fetchForestData",
+            "runtime": "node-18.0",
+            "execute": [],
+            "events": [],
+            "schedule": "* * * * *",
+            "timeout": 15,
+            "enabled": true,
+            "logging": true,
+            "entrypoint": "src/main.js",
+            "commands": "npm install",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "path": "functions/fetchForestData"
+        }
+    ]
 }
