@@ -169,14 +169,23 @@
 		{
 			title: 'Oregon City',
 			distance: 3378,
-			color: 'green'
+			color: 'gold'
 		}
 	];
 
 	sections = sections.map((section: any, index) => {
+		const steps = generateSteps(
+			section.distance,
+			(sections[index + 1] ?? { distance: 3490 }).distance
+		);
+
+		if (index === sections.length - 1) {
+			steps.push(3490);
+		}
+
 		return {
 			...section,
-			steps: generateSteps(section.distance, (sections[index + 1] ?? { distance: 3490 }).distance)
+			steps
 		};
 	});
 
@@ -208,12 +217,9 @@
 <div class="bg-[#202f36]">
 	<div class="max-w-lg mx-auto p-3 text-center py-12">
 		<div class="flex flex-row justify-center gap-3">
-			<a
-				href="/audit"
-				class="rounded-lg title uppercase font-bold px-6 py-2 bg-[#ffffff] text-[#010434]"
-			>
+			<div class="rounded-lg title uppercase font-bold px-6 py-2 bg-[#ffffff] text-[#010434]">
 				Season 1
-			</a>
+			</div>
 
 			<div class="rounded-lg title uppercase font-bold px-6 py-2 bg-[#37464f] text-[#52656d]">
 				Season 2
@@ -237,6 +243,12 @@
 				1 meter
 			</div>
 		</div>
+
+		<div class="mt-6">
+			<a href="/audit" class="bg-[#161f23] px-4 py-2 rounded-lg text-[#6bbdf2]">
+				View Activity History
+			</a>
+		</div>
 	</div>
 </div>
 
@@ -256,6 +268,31 @@
 			/>
 		{/each}
 	{/each}
+
+	<div class="w-full flex justify-center mt-1">
+		<div
+			class={`text-[#cd7900] bg-[#ffc700] shadow-gold relative w-20 h-20 rounded-full flex items-center justify-center`}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="2"
+				stroke="currentColor"
+				class="size-8"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
+				/>
+			</svg>
+
+			<div
+				class={`bg-[#ffc700] absolute bottom-[calc(100%+20px)] -left-1 w-8 h-1 rounded-full transform rotate-[60deg]`}
+			></div>
+		</div>
+	</div>
 </div>
 
 <footer class="px-3 py-4 fixed bottom-0 left-0 w-full bg-[#131f24] border-t-[2px] border-[#37464f]">

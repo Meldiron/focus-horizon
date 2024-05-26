@@ -4,7 +4,7 @@
 	export let finishedPrevious: boolean;
 	export let iterator: number;
 	export let mirrored: boolean;
-	export let color: 'red' | 'orange' | 'green' | 'blue' | 'pink';
+	export let color: 'red' | 'orange' | 'green' | 'blue' | 'pink' | 'gold';
 	export let users: any[];
 
 	const isFirst = iterator === 0;
@@ -79,6 +79,9 @@
 		if (color === 'pink') {
 			return 'bg-[#ef8ccc] text-[#ffffff] shadow-pink';
 		}
+		if (color === 'gold') {
+			return 'bg-[#ffc700] text-[#cd7900] shadow-gold';
+		}
 		if (color === 'orange') {
 			return 'bg-[#ff9600] text-[#ffffff] shadow-orange';
 		}
@@ -96,6 +99,9 @@
 		}
 		if (color === 'pink') {
 			return 'bg-[#ef8ccc]';
+		}
+		if (color === 'gold') {
+			return 'bg-[#ffc700]';
 		}
 		if (color === 'orange') {
 			return 'bg-[#ff9600]';
@@ -138,7 +144,7 @@
 						<div class="relative w-[fit-content]">
 							<p>{longNames.includes(user.name) ? user.name : getShortName(user.name)}</p>
 							{#if longNames.includes(user.name)}
-								<p class="-mt-1 text-xs text-start text-[#bcbdc6]">1245 m</p>
+								<p class="-mt-1 text-xs text-start text-[#bcbdc6]">{user.meters} m</p>
 							{/if}
 							{#if isWinner(user, users) && !longNames.includes(user.name)}
 								<div class="absolute left-0 top-0">
