@@ -5,8 +5,7 @@
 
 	export let data: PageData;
 
-	const progressMinutes = data.document.minutes - 260; // - 25011
-	const progressMeters = Math.floor(progressMinutes / 3);
+	const progressMeters = data.document.meters;
 
 	const progressUnit = progressMeters > 9999 ? 'Km' : 'Meters';
 	const progressUnitDistance = progressMeters > 9999 ? progressMeters / 1000 : progressMeters;
@@ -30,99 +29,123 @@
 	let sections: any[] = [
 		{
 			title: ' Missouri',
-			distance: 0
+			distance: 0,
+			color: 'green'
 		},
 		{
 			title: 'Santa Fe',
-			distance: 72
+			distance: 72,
+			color: 'blue'
 		},
 		{
 			title: 'Mount Oread',
-			distance: 185
+			distance: 185,
+			color: 'red'
 		},
 		{
 			title: 'Kansas River',
-			distance: 241
+			distance: 241,
+			color: 'pink'
 		},
 		{
 			title: 'Fort Kearny',
-			distance: 409
+			distance: 409,
+			color: 'orange'
 		},
 		{
 			title: 'South Platte',
-			distance: 488
+			distance: 488,
+			color: 'green'
 		},
 		{
 			title: 'Ash Hollow',
-			distance: 571
+			distance: 571,
+			color: 'blue'
 		},
 		{
 			title: 'Jail Rocks',
-			distance: 772
+			distance: 772,
+			color: 'pink'
 		},
 		{
 			title: 'Chimney Rock',
-			distance: 814
+			distance: 814,
+			color: 'green'
 		},
 		{
 			title: 'Scotts Bluff',
-			distance: 865
+			distance: 865,
+			color: 'red'
 		},
 		{
 			title: 'Fort Laramie',
-			distance: 912
+			distance: 912,
+			color: 'orange'
 		},
 		{
 			title: 'Register Cliff',
-			distance: 1350
+			distance: 1350,
+			color: 'pink'
 		},
 		{
 			title: 'Montana',
-			distance: 1481
+			distance: 1481,
+			color: 'blue'
 		},
 		{
 			title: 'Ayres Natural',
-			distance: 1578
+			distance: 1578,
+			color: 'green'
 		},
 		{
 			title: 'Independence Rock',
-			distance: 1723
+			distance: 1723,
+			color: 'red'
 		},
 		{
 			title: 'South Pass',
-			distance: 1990
+			distance: 1990,
+			color: 'orange'
 		},
 		{
 			title: 'Salt Lake',
-			distance: 2130
+			distance: 2130,
+			color: 'pink'
 		},
 		{
 			title: 'Green River',
-			distance: 2181
+			distance: 2181,
+			color: 'green'
 		},
 		{
 			title: 'Names Hill',
-			distance: 2287
+			distance: 2287,
+			color: 'blue'
 		},
 		{
 			title: 'Soda Springs',
-			distance: 2405
+			distance: 2405,
+			color: 'pink'
 		},
 		{
 			title: 'Fort Hall',
-			distance: 2473
+			distance: 2473,
+			color: 'orange'
 		},
 		{
 			title: 'California',
-			distance: 2510
+			distance: 2510,
+			color: 'blue'
 		},
 		{
 			title: 'Fort Boise',
-			distance: 2734
+			distance: 2734,
+			color: 'green'
 		},
 		{
 			title: 'Snake River',
-			distance: 2927
+			distance: 2927,
+			color: 'pink'
 		},
 		{
 			title: 'Pre-1847 route',
@@ -130,19 +153,23 @@
 		},
 		{
 			title: 'Whitman Mission',
-			distance: 3180
+			distance: 3180,
+			color: 'red'
 		},
 		{
 			title: 'Fort Nez Percés',
-			distance: 3275
+			distance: 3275,
+			color: 'blue'
 		},
 		{
 			title: 'The Dalles',
-			distance: 3301
+			distance: 3301,
+			color: 'pink'
 		},
 		{
 			title: 'Oregon City',
-			distance: 3378
+			distance: 3378,
+			color: 'green'
 		}
 	];
 
@@ -159,14 +186,34 @@
 	const nextSection = sections.find((s, index) => {
 		return progressMeters < s.distance;
 	});
+
+	function getUsersOnCircle(sectionIndex: number, stepIndex: number) {
+		const section = sections[sectionIndex];
+		const step = section.steps[stepIndex];
+
+		let nextStep = section.steps[stepIndex + 1] ?? null;
+		if (nextStep === null) {
+			nextStep = sections[sectionIndex + 1]?.steps[0] ?? 99999999;
+		}
+
+		return data.documents.filter((d) => {
+			const hasCurrent = d.meters >= step * 3;
+			const hasNext = d.meters >= nextStep * 3;
+
+			return hasCurrent && !hasNext;
+		});
+	}
 </script>
 
 <div class="bg-[#202f36]">
 	<div class="max-w-lg mx-auto p-3 text-center py-12">
 		<div class="flex flex-row justify-center gap-3">
-			<div class="rounded-lg title uppercase font-bold px-6 py-2 bg-[#ffffff] text-[#010434]">
+			<a
+				href="/audit"
+				class="rounded-lg title uppercase font-bold px-6 py-2 bg-[#ffffff] text-[#010434]"
+			>
 				Season 1
-			</div>
+			</a>
 
 			<div class="rounded-lg title uppercase font-bold px-6 py-2 bg-[#37464f] text-[#52656d]">
 				Season 2
@@ -199,6 +246,8 @@
 
 		{#each section.steps as step, stepIndex}
 			<Circle
+				users={getUsersOnCircle(sectionIndex, stepIndex)}
+				color={section.color ?? 'green'}
 				mirrored={sectionIndex % 2 !== 0}
 				distance={step}
 				iterator={stepIndex}

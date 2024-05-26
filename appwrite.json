@@ -13,7 +13,7 @@
 	"collections": [
 		{
 			"$id": "forestData",
-			"$permissions": [],
+			"$permissions": ["read(\"any\")"],
 			"databaseId": "main",
 			"name": "forestData",
 			"enabled": true,
@@ -21,6 +21,80 @@
 			"attributes": [
 				{
 					"key": "minutes",
+					"type": "integer",
+					"status": "available",
+					"error": "",
+					"required": true,
+					"array": false,
+					"min": 0,
+					"max": 9223372036854776000,
+					"default": null
+				},
+				{
+					"key": "initMinutes",
+					"type": "integer",
+					"status": "available",
+					"error": "",
+					"required": true,
+					"array": false,
+					"min": 0,
+					"max": 9223372036854776000,
+					"default": null
+				},
+				{
+					"key": "name",
+					"type": "string",
+					"status": "available",
+					"error": "",
+					"required": false,
+					"array": false,
+					"size": 255,
+					"default": "Unnamed"
+				}
+			],
+			"indexes": []
+		},
+		{
+			"$id": "audit",
+			"$permissions": ["read(\"any\")"],
+			"databaseId": "main",
+			"name": "audit",
+			"enabled": true,
+			"documentSecurity": false,
+			"attributes": [
+				{
+					"key": "userId",
+					"type": "string",
+					"status": "available",
+					"error": "",
+					"required": true,
+					"array": false,
+					"size": 255,
+					"default": null
+				},
+				{
+					"key": "name",
+					"type": "string",
+					"status": "available",
+					"error": "",
+					"required": true,
+					"array": false,
+					"size": 255,
+					"default": null
+				},
+				{
+					"key": "minutes",
+					"type": "integer",
+					"status": "available",
+					"error": "",
+					"required": true,
+					"array": false,
+					"min": 0,
+					"max": 9223372036854776000,
+					"default": null
+				},
+				{
+					"key": "newMeters",
 					"type": "integer",
 					"status": "available",
 					"error": "",

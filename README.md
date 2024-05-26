@@ -1,8 +1,3 @@
-- multiaccount support
-- bobble above circle where person is
-- Different URLs for different players
-- all colors support, pink, orange, red, ..
-
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).

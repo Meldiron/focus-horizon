@@ -4,6 +4,8 @@
 	export let finishedPrevious: boolean;
 	export let iterator: number;
 	export let mirrored: boolean;
+	export let color: 'red' | 'orange' | 'green' | 'blue' | 'pink';
+	export let users: any[];
 
 	const isFirst = iterator === 0;
 
@@ -20,12 +22,60 @@
 
 	const unit = distance > 9999 ? 'Km' : 'Meters';
 	const unitedDistance = distance > 9999 ? distance / 1000 : distance;
+
+	function getShortName(name: string) {
+		if (name.includes(' ')) {
+			const parts = name.split(' ');
+			return parts
+				.map((part) => part[0])
+				.join('')
+				.toUpperCase();
+		}
+
+		return name[0].toUpperCase();
+	}
+
+	function getColorClasses(color: string) {
+		if (color === 'green') {
+			return 'bg-[#58cc02] text-[#ffffff] shadow-green';
+		}
+		if (color === 'blue') {
+			return 'bg-[#53adef] text-[#ffffff] shadow-blue';
+		}
+		if (color === 'pink') {
+			return 'bg-[#ef8ccc] text-[#ffffff] shadow-pink';
+		}
+		if (color === 'orange') {
+			return 'bg-[#ff9600] text-[#ffffff] shadow-orange';
+		}
+		if (color === 'red') {
+			return 'bg-[#ff4b4b] text-[#ffffff] shadow-red';
+		}
+	}
+
+	function getLineClasses(color: string) {
+		if (color === 'green') {
+			return 'bg-[#58cc02]';
+		}
+		if (color === 'blue') {
+			return 'bg-[#53adef]';
+		}
+		if (color === 'pink') {
+			return 'bg-[#ef8ccc]';
+		}
+		if (color === 'orange') {
+			return 'bg-[#ff9600]';
+		}
+		if (color === 'red') {
+			return 'bg-[#ff4b4b]';
+		}
+	}
 </script>
 
 <div class="w-full flex justify-center">
 	<div
 		style={`transform: translateX(${translateX}px)`}
-		class={`${finished ? 'bg-[#58cc02] text-[#ffffff] shadow-green' : 'text-[#52656d] bg-[#37464f] shadow-gray'} relative w-20 h-20 rounded-full flex items-center justify-center`}
+		class={`${finished ? getColorClasses(color) : 'text-[#52656d] bg-[#37464f] shadow-gray'} relative w-20 h-20 rounded-full flex items-center justify-center`}
 	>
 		<div class="text-center flex flex-col">
 			<p class="font-bold text-2xl">{unitedDistance}</p>
@@ -35,13 +85,25 @@
 		{#if !isFirst}
 			{#if previousStepValue < stepValue}
 				<div
-					class={`${finishedPrevious ? 'bg-[#46a301]' : 'bg-[#37464f]'} absolute bottom-[calc(100%+20px)] -left-1 w-8 h-1 rounded-full transform rotate-[60deg]`}
+					class={`${finishedPrevious ? getLineClasses(color) : 'bg-[#37464f]'} absolute bottom-[calc(100%+20px)] -left-1 w-8 h-1 rounded-full transform rotate-[60deg]`}
 				></div>
 			{:else if previousStepValue > stepValue}
 				<div
-					class={`${finishedPrevious ? 'bg-[#46a301]' : 'bg-[#37464f]'} absolute bottom-[calc(100%+20px)] -right-1 w-8 h-1 rounded-full transform rotate-[-60deg]`}
+					class={`${finishedPrevious ? getLineClasses(color) : 'bg-[#37464f]'} absolute bottom-[calc(100%+20px)] -right-1 w-8 h-1 rounded-full transform rotate-[-60deg]`}
 				></div>
 			{/if}
+		{/if}
+
+		{#if users.length > 0}
+			<div class="flex gap-1 absolute bottom-[calc(100%-14px)]">
+				{#each users as user}
+					<div
+						class=" text-[#010434] bg-[#ffffff] font-bold rounded-full text-sm p-2 px-3 text-center border-[#dadbe0] border-[2px]"
+					>
+						{getShortName(user.name)}
+					</div>
+				{/each}
+			</div>
 		{/if}
 	</div>
 </div>
