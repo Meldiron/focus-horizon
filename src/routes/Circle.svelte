@@ -20,7 +20,7 @@
 
 	let translateX = stepSize * stepValue;
 
-	const unit = distance > 9999 ? 'Km' : 'Meters';
+	const unit = distance > 9999 ? 'Km' : 'Km';
 	const unitedDistance = distance > 9999 ? distance / 1000 : distance;
 
 	let longNames: string[] = [];

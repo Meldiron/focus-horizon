@@ -7,7 +7,7 @@
 
 	const progressMeters = data.document.meters;
 
-	const progressUnit = progressMeters > 9999 ? 'Km' : 'Meters';
+	const progressUnit = progressMeters > 9999 ? 'Km' : 'Km';
 	const progressUnitDistance = progressMeters > 9999 ? progressMeters / 1000 : progressMeters;
 
 	function generateSteps(currentDistance: number, nextDistance: number) {
@@ -240,7 +240,7 @@
 			<div
 				class="rounded-lg title uppercase text-sm font-bold px-3 py-1 bg-[#375e76] text-[#6bbdf3]"
 			>
-				1 meter
+				1 kilometer
 			</div>
 		</div>
 

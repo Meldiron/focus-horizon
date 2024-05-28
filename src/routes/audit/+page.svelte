@@ -54,7 +54,7 @@
 			<div
 				class="rounded-lg title uppercase text-sm font-bold px-3 py-1 bg-[#375e76] text-[#6bbdf3]"
 			>
-				1 meter
+				1 kilometer
 			</div>
 		</div>
 	</div>
@@ -74,7 +74,7 @@
 				<span class="text-white break-keep" style="white-space:nowrap;">{activity.name}</span> was
 				focused for {activity.minutes} minutes and earned
 				<span class="text-white break-keep" style="white-space:nowrap;"
-					>{Math.floor(activity.minutes / 3)} meters</span
+					>{Math.floor(activity.minutes / 3)} kilometers</span
 				>.
 			</p>
 		</div>
