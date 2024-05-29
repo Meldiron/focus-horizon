@@ -21,8 +21,8 @@ export default async ({ req, res, log, error }) => {
       url:
         'https://c88fef96.forestapp.cc/api/v1/users/' + forestId + '/profile',
       headers: {
-        'User-Agent': 'Focus Horizon (Alpha), matejbaco2000@gmail.com'
-      }
+        'User-Agent': 'Focus Horizon (Alpha), matejbaco2000@gmail.com',
+      },
     });
 
     const minutes = response.data.total_minute;

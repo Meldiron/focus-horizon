@@ -5,7 +5,7 @@ import type { LayoutLoad } from './$types';
 export let ssr = false;
 
 export const load: LayoutLoad = async ({ url }) => {
-	const user = url.searchParams.get('u') ?? 'Matej Baco';
+	const user = url.searchParams.get('u') ?? null;
 
 	const response = await databases.listDocuments('main', 'forestData', [Query.limit(100)]);
 
@@ -16,14 +16,8 @@ export const load: LayoutLoad = async ({ url }) => {
 		};
 	});
 
-	console.log(user);
-
 	return {
-		document: response.documents.find((d) => d.name === user) ?? {
-			name: 'No user',
-			minutes: 0,
-			initMinutes: 0
-		},
+		document: response.documents.find((d) => d.name === user) ?? null,
 		documents: response.documents
 	};
 };
