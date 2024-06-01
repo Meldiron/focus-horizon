@@ -356,7 +356,7 @@
 
 {#if data.document}
 	<footer
-		class="px-3 py-4 fixed bottom-0 left-0 w-full bg-[#131f24] border-t-[2px] border-[#37464f]"
+		class="z-[50] px-3 py-4 fixed bottom-0 left-0 w-full bg-[#131f24] border-t-[2px] border-[#37464f]"
 	>
 		<div class="max-w-lg mx-auto grid grid-cols-12">
 			<div class="col-span-4 text-start">
@@ -379,7 +379,7 @@
 	</footer>
 {:else}
 	<footer
-		class="px-3 py-4 fixed bottom-0 left-0 w-full bg-[#131f24] border-t-[2px] border-[#37464f]"
+		class="z-[50] px-3 py-4 fixed bottom-0 left-0 w-full bg-[#131f24] border-t-[2px] border-[#37464f]"
 	>
 		<div class="max-w-lg mx-auto flex items-center justify-center">
 			<div class="text-center flex flex-col h-full items-center justify-center">
