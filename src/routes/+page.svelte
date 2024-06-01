@@ -397,7 +397,7 @@
 {/if}
 
 {#if signInOpened}
-	<div class="fixed inset-0 bg-black bg-opacity-60 flex items-end justify-center">
+	<div class="z-[200] fixed inset-0 bg-black bg-opacity-60 flex items-end justify-center">
 		<div class="max-w-md w-full mx-auto">
 			<div class="w-full rounded-t-3xl bg-[#131f24] p-4 grid grid-cols-12 gap-3">
 				<a target="_self" href="/?u=Matej Baco" class="col-span-4 text-center">
