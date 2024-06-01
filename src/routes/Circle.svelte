@@ -138,6 +138,7 @@
 			<div class="flex gap-1 absolute bottom-[calc(100%-14px)]">
 				{#each users as user}
 					<button
+						id={user.name}
 						on:click={() => toggleLongName(user.name)}
 						class={`${longNames.includes(user.name) ? 'rounded-lg p-2 py-1' : 'rounded-full p-2 px-3 '} w-[max-content] text-[#010434] bg-[#ffffff] font-bold text-sm text-center border-[#dadbe0] border-[2px]`}
 					>

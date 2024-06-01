@@ -18,6 +18,6 @@ export const load: LayoutLoad = async ({ url }) => {
 
 	return {
 		document: response.documents.find((d) => d.name === user) ?? null,
-		documents: response.documents
+		documents: response.documents.sort((a, b) => (a.meters > b.meters ? -1 : 1))
 	};
 };

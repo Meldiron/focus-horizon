@@ -215,6 +215,12 @@
 			return hasCurrent && !hasNext;
 		});
 	}
+
+	function scrollToPlayer(name: string) {
+		document.getElementById(name)?.scrollIntoView({
+			behavior: 'smooth'
+		});
+	}
 </script>
 
 <div class="bg-[#202f36]">
@@ -256,6 +262,56 @@
 </div>
 
 <div class="max-w-lg mx-auto p-3 mt-4 flex flex-col gap-12 mb-32">
+	<div class="relative z-[20] -mb-16 mt-6 grid grid-cols-12 gap-1">
+		<div class="absolute opacity-50 inset-0 flex items-end justify-end pointer-events-none">
+			<div class="w-full h-10 bg-gradient-to-t from-[#131f24]"></div>
+		</div>
+		<div class="col-span-4 flex flex-col justify-end">
+			<button on:click={() => scrollToPlayer(data.documents[1].name)}>
+				<p class="text-[#52656d] text-lighter text-sm uppercase">{data.documents[1].meters} Km</p>
+
+				<p class="text-center text-lg text-white opacity-50 font-semibold mb-2">
+					{data.documents[1].name}
+				</p>
+				<div
+					class="rounded-tr-none rounded-t-xl bg-gradient-to-b from-[#d9e3ed] via-[#c0d1db] to-[#8aa2ba] text-white font-bold text-2xl tracking-wide h-24 flex items-center justify-center"
+				>
+					#2
+				</div>
+			</button>
+		</div>
+
+		<div class="col-span-4 flex flex-col justify-end">
+			<button on:click={() => scrollToPlayer(data.documents[0].name)}>
+				<p class="text-white text-lighter opacity-50 text-sm uppercase">
+					{data.documents[0].meters} Km
+				</p>
+				<p class="text-center text-lg text-[#ffffff] font-semibold mb-2">
+					{data.documents[0].name}
+				</p>
+				<div
+					class="rounded-t-xl bg-gradient-to-b from-[#fde966] via-[#fed604] to-[#ff9b00] text-white font-bold text-2xl tracking-wide h-36 flex items-center justify-center"
+				>
+					#1
+				</div>
+			</button>
+		</div>
+
+		<div class="col-span-4 flex flex-col justify-end">
+			<button on:click={() => scrollToPlayer(data.documents[2].name)}>
+				<p class="text-[#52656d] text-lighter text-sm uppercase">{data.documents[2].meters} Km</p>
+
+				<p class="text-center text-lg text-white opacity-50 font-semibold mb-2">
+					{data.documents[2].name}
+				</p>
+				<div
+					class="rounded-tl-none rounded-t-xl bg-gradient-to-b from-[#f8be8e] via-[#e3ad7e] to-[#c87e14] text-white font-bold text-2xl tracking-wide h-16 flex items-center justify-center"
+				>
+					#3
+				</div>
+			</button>
+		</div>
+	</div>
 	{#each sections as section, sectionIndex}
 		<Separator title={section.title} />
 
