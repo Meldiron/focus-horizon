@@ -221,6 +221,17 @@
 			behavior: 'smooth'
 		});
 	}
+
+	function getLeaderboardHeight(current: number, max: number) {
+		const MAX_HEIGHT = 200;
+		if (current === max) {
+			return MAX_HEIGHT;
+		}
+
+		const percentage = current / max;
+
+		return Math.floor(MAX_HEIGHT * percentage);
+	}
 </script>
 
 <div class="bg-[#202f36]">
@@ -274,7 +285,8 @@
 					{data.documents[1].name}
 				</p>
 				<div
-					class="rounded-tr-none rounded-t-xl bg-gradient-to-b from-[#d9e3ed] via-[#c0d1db] to-[#8aa2ba] text-white font-bold text-2xl tracking-wide h-24 flex items-center justify-center"
+					style={`height: ${getLeaderboardHeight(data.documents[1].meters, data.documents[0].meters)}px`}
+					class="rounded-tr-none rounded-t-xl bg-gradient-to-b from-[#d9e3ed] via-[#c0d1db] to-[#8aa2ba] text-white font-bold text-2xl tracking-wide flex items-center justify-center"
 				>
 					#2
 				</div>
@@ -290,7 +302,8 @@
 					{data.documents[0].name}
 				</p>
 				<div
-					class="rounded-t-xl bg-gradient-to-b from-[#fde966] via-[#fed604] to-[#ff9b00] text-white font-bold text-2xl tracking-wide h-36 flex items-center justify-center"
+					style={`height: ${getLeaderboardHeight(data.documents[0].meters, data.documents[0].meters)}px`}
+					class="rounded-t-xl bg-gradient-to-b from-[#fde966] via-[#fed604] to-[#ff9b00] text-white font-bold text-2xl tracking-wide flex items-center justify-center"
 				>
 					#1
 				</div>
@@ -305,7 +318,8 @@
 					{data.documents[2].name}
 				</p>
 				<div
-					class="rounded-tl-none rounded-t-xl bg-gradient-to-b from-[#f8be8e] via-[#e3ad7e] to-[#c87e14] text-white font-bold text-2xl tracking-wide h-16 flex items-center justify-center"
+					style={`height: ${getLeaderboardHeight(data.documents[2].meters, data.documents[0].meters)}px`}
+					class="rounded-tl-none rounded-t-xl bg-gradient-to-b from-[#f8be8e] via-[#e3ad7e] to-[#c87e14] text-white font-bold text-2xl tracking-wide flex items-center justify-center"
 				>
 					#3
 				</div>
