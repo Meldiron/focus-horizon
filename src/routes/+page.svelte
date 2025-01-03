@@ -413,7 +413,25 @@
 {#if signInOpened}
 	<div class="z-[200] fixed inset-0 bg-black bg-opacity-60 flex items-end justify-center">
 		<div class="max-w-md w-full mx-auto">
-			<div class="w-full rounded-t-3xl bg-[#131f24] p-4 grid grid-cols-12 gap-3">
+			<div class="w-full rounded-t-3xl bg-[#131f24] p-4 grid grid-cols-12 gap-3 gap-y-8">
+				<a target="_self" href="/?u=Eva Jekielková" class="col-span-4 text-center">
+					<div
+						class="bg-[#131f24] border-[2px] border-[#52656d] text-[#ffffff] flex items-center justify-center rounded-2xl w-full aspect-video"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							class="size-8"
+						>
+							<path
+								d="M18 1.5c2.9 0 5.25 2.35 5.25 5.25v3.75a.75.75 0 0 1-1.5 0V6.75a3.75 3.75 0 1 0-7.5 0v3a3 3 0 0 1 3 3v6.75a3 3 0 0 1-3 3H3.75a3 3 0 0 1-3-3v-6.75a3 3 0 0 1 3-3h9v-3c0-2.9 2.35-5.25 5.25-5.25Z"
+							/>
+						</svg>
+					</div>
+					<p class="mt-4 font-bold text-[#52656d] text-lg">Eva</p>
+				</a>
+
 				<a target="_self" href="/?u=Matej Baco" class="col-span-4 text-center">
 					<div
 						class="bg-[#131f24] border-[2px] border-[#52656d] text-[#ffffff] flex items-center justify-center rounded-2xl w-full aspect-video"

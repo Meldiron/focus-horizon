@@ -9,7 +9,7 @@ export const load: LayoutLoad = async ({ url }) => {
 
 	const response = await databases.listDocuments('main', 'forestData', [Query.limit(100)]);
 
-	response.documents = response.documents.map((doc) => {
+	response.documents = response.documents.filter((doc) => doc.$id != "4974446").map((doc) => {
 		return {
 			...doc,
 			meters: Math.floor((doc.minutes - doc.initMinutes) / 3)
