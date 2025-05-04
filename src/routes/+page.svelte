@@ -195,9 +195,12 @@
 	const currentSection = sections.find((s) => {
 		return progressMeters >= s.distance;
 	});
-	const nextSection = sections.find((s, index) => {
+	let nextSection = sections.find((s, index) => {
 		return progressMeters < s.distance;
 	});
+	if(!nextSection) {
+	  nextSection = sections[sections.length - 1];
+	}
 
 	function getUsersOnCircle(sectionIndex: number, stepIndex: number) {
 		const section = sections[sectionIndex];
