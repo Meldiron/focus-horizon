@@ -1,5 +1,5 @@
 <script lang="ts">
-  import * as seedrandom from 'seedrandom';
+	import * as seedrandom from 'seedrandom';
 
 	import type { PageData } from './$types';
 	import Circle from './Circle.svelte';
@@ -103,25 +103,21 @@
 			color: 'gold'
 		}
 	];
-	
-	const colors = ['red' ,'orange' ,'green', 'blue', 'pink'];
-	sections = sections.map((section) => {
-	let color = section.color;
-	
-	
-	if(!color) {
-	const rand = seedrandom.default(section.title + '-2');
-	const n = rand();
-	color = colors[Math.floor(n*colors.length)];
 
-	}
-	
-	section.color = color;
-	
-	return section;
-	})
-	
-	
+	const colors = ['red', 'orange', 'green', 'blue', 'pink'];
+	sections = sections.map((section) => {
+		let color = section.color;
+
+		if (!color) {
+			const rand = seedrandom.default(section.title + '-2');
+			const n = rand();
+			color = colors[Math.floor(n * colors.length)];
+		}
+
+		section.color = color;
+
+		return section;
+	});
 
 	const FINAL_METER = 660;
 
