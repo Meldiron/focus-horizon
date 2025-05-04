@@ -41,22 +41,6 @@
 		</div>
 
 		<h1 class="title font-bold text-5xl text-white mt-8">Focus Horizon</h1>
-
-		<h3 class="title font-bold text-2xl text-[#52656d] mt-4">Oregon Trail</h3>
-
-		<div class="flex justify-center items-center gap-2 mt-6">
-			<div
-				class="rounded-lg title uppercase text-sm font-bold px-3 py-1 bg-[#375e76] text-[#6bbdf3]"
-			>
-				3 minutes
-			</div>
-			<p class="font-bold text-[#375e76]">=</p>
-			<div
-				class="rounded-lg title uppercase text-sm font-bold px-3 py-1 bg-[#375e76] text-[#6bbdf3]"
-			>
-				1 kilometer
-			</div>
-		</div>
 	</div>
 </div>
 
@@ -67,15 +51,12 @@
 
 	{#each data.documents as activity}
 		<div class="p-3 rounded-lg border-[2px] border-[#364750] bg-[#131f24] text-[#6e848e]">
-			<p class="text-sm uppercase font-bold text-[#2c3d46] tracking-wide">
+			<p class="text-sm uppercase font-bold text-[#6e848e] text-opacity-50 tracking-wide">
 				{timeDifference(Date.now(), new Date(activity.$createdAt).getTime())}
 			</p>
 			<p class="text-lg mt-1">
 				<span class="text-white break-keep" style="white-space:nowrap;">{activity.name}</span> was
-				focused for {activity.minutes} minutes and earned
-				<span class="text-white break-keep" style="white-space:nowrap;"
-					>{Math.floor(activity.minutes / 3)} kilometers</span
-				>.
+				focused for {activity.minutes} minutes.
 			</p>
 		</div>
 	{/each}

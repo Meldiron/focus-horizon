@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
 	import type { PageData } from './$types';
 	import Circle from './Circle.svelte';
 	import Separator from './Separator.svelte';
 
 	export let data: PageData;
 
-	const progressMeters = data.document?.meters ?? -1;
+	const progressMeters = data.document?.meters ?? -1; // Change this to fill progress to 100%
 
 	const progressUnit = progressMeters > 9999 ? 'Km' : 'Km';
 	const progressUnitDistance = progressMeters > 9999 ? progressMeters / 1000 : progressMeters;
@@ -31,159 +30,67 @@
 
 	let sections: any[] = [
 		{
-			title: ' Missouri',
+			title: 'Praha',
 			distance: 0,
-			color: 'green'
-		},
-		{
-			title: 'Santa Fe',
-			distance: 72,
-			color: 'blue'
-		},
-		{
-			title: 'Mount Oread',
-			distance: 185,
-			color: 'red'
-		},
-		{
-			title: 'Kansas River',
-			distance: 241,
-			color: 'pink'
-		},
-		{
-			title: 'Fort Kearny',
-			distance: 409,
 			color: 'orange'
 		},
 		{
-			title: 'South Platte',
-			distance: 488,
-			color: 'green'
-		},
-		{
-			title: 'Ash Hollow',
-			distance: 571,
-			color: 'blue'
-		},
-		{
-			title: 'Jail Rocks',
-			distance: 772,
+			title: 'Jihlava',
+			distance: 127,
 			color: 'pink'
 		},
 		{
-			title: 'Chimney Rock',
-			distance: 814,
-			color: 'green'
-		},
-		{
-			title: 'Scotts Bluff',
-			distance: 865,
+			title: 'Brno',
+			distance: 208,
 			color: 'red'
 		},
 		{
-			title: 'Fort Laramie',
-			distance: 912,
-			color: 'orange'
-		},
-		{
-			title: 'Register Cliff',
-			distance: 1350,
-			color: 'pink'
-		},
-		{
-			title: 'Montana',
-			distance: 1481,
-			color: 'blue'
-		},
-		{
-			title: 'Ayres Natural',
-			distance: 1578,
+			title: 'Uherský Brod',
+			distance: 294,
 			color: 'green'
 		},
 		{
-			title: 'Independence Rock',
-			distance: 1723,
+			title: 'Trenčín',
+			distance: 338,
+			color: 'blue'
+		},
+		{
+			title: 'Žilina',
+			distance: 412,
 			color: 'red'
 		},
 		{
-			title: 'South Pass',
-			distance: 1990,
-			color: 'orange'
-		},
-		{
-			title: 'Salt Lake',
-			distance: 2130,
+			title: 'Liptovský Mikuláš',
+			distance: 503,
 			color: 'pink'
 		},
 		{
-			title: 'Green River',
-			distance: 2181,
+			title: 'Poprad',
+			distance: 553,
+			color: 'blue'
+		},
+		{
+			title: 'Prešov',
+			distance: 625,
 			color: 'green'
 		},
 		{
-			title: 'Names Hill',
-			distance: 2287,
-			color: 'blue'
-		},
-		{
-			title: 'Soda Springs',
-			distance: 2405,
-			color: 'pink'
-		},
-		{
-			title: 'Fort Hall',
-			distance: 2473,
-			color: 'orange'
-		},
-		{
-			title: 'California',
-			distance: 2510,
-			color: 'blue'
-		},
-		{
-			title: 'Fort Boise',
-			distance: 2734,
-			color: 'green'
-		},
-		{
-			title: 'Snake River',
-			distance: 2927,
-			color: 'pink'
-		},
-		{
-			title: 'Pre-1847 route',
-			distance: 3017
-		},
-		{
-			title: 'Whitman Mission',
-			distance: 3180,
-			color: 'red'
-		},
-		{
-			title: 'Fort Nez Percés',
-			distance: 3275,
-			color: 'blue'
-		},
-		{
-			title: 'The Dalles',
-			distance: 3301,
-			color: 'pink'
-		},
-		{
-			title: 'Oregon City',
-			distance: 3378,
+			title: 'Košice',
+			distance: 652,
 			color: 'gold'
 		}
 	];
 
+	const FINAL_METER = 660;
+
 	sections = sections.map((section: any, index) => {
 		const steps = generateSteps(
 			section.distance,
-			(sections[index + 1] ?? { distance: 3490 }).distance
+			(sections[index + 1] ?? { distance: FINAL_METER }).distance
 		);
 
 		if (index === sections.length - 1) {
-			steps.push(3490);
+			steps.push(FINAL_METER);
 		}
 
 		return {
@@ -192,14 +99,14 @@
 		};
 	});
 
-	const currentSection = sections.find((s) => {
+	let currentSection = sections.find((s) => {
 		return progressMeters >= s.distance;
 	});
 	let nextSection = sections.find((s, index) => {
 		return progressMeters < s.distance;
 	});
-	if(!nextSection) {
-	  nextSection = sections[sections.length - 1];
+	if (!nextSection) {
+		nextSection = sections[sections.length - 1];
 	}
 
 	function getUsersOnCircle(sectionIndex: number, stepIndex: number) {
@@ -240,24 +147,27 @@
 <div class="bg-[#202f36]">
 	<div class="max-w-lg mx-auto p-3 text-center py-12">
 		<div class="flex flex-row justify-center gap-3">
-			<div class="rounded-lg title uppercase font-bold px-6 py-2 bg-[#ffffff] text-[#010434]">
+			<a
+				href="/history/season1"
+				class="rounded-lg title uppercase font-bold px-6 py-2 bg-transparent border-2 border-neutral-300 text-[#ffffff]"
+			>
 				Season 1
-			</div>
+			</a>
 
-			<div class="rounded-lg title uppercase font-bold px-6 py-2 bg-[#37464f] text-[#52656d]">
+			<div class="rounded-lg title uppercase font-bold px-6 py-2 bg-[#ffffff] text-[#010434]">
 				Season 2
 			</div>
 		</div>
 
 		<h1 class="title font-bold text-5xl text-white mt-8">Focus Horizon</h1>
 
-		<h3 class="title font-bold text-2xl text-[#52656d] mt-4">Oregon Trail</h3>
+		<h3 class="title font-bold text-2xl text-[#52656d] mt-4">Mini World Tour</h3>
 
 		<div class="flex justify-center items-center gap-2 mt-6">
 			<div
 				class="rounded-lg title uppercase text-sm font-bold px-3 py-1 bg-[#375e76] text-[#6bbdf3]"
 			>
-				3 minutes
+				10 minutes
 			</div>
 			<p class="font-bold text-[#375e76]">=</p>
 			<div
@@ -344,31 +254,6 @@
 			/>
 		{/each}
 	{/each}
-
-	<div class="w-full flex justify-center mt-1">
-		<div
-			class={`text-[#cd7900] bg-[#ffc700] shadow-gold relative w-20 h-20 rounded-full flex items-center justify-center`}
-		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke-width="2"
-				stroke="currentColor"
-				class="size-8"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
-				/>
-			</svg>
-
-			<div
-				class={`bg-[#ffc700] absolute bottom-[calc(100%+20px)] -left-1 w-8 h-1 rounded-full transform rotate-[60deg]`}
-			></div>
-		</div>
-	</div>
 </div>
 
 {#if data.document}
