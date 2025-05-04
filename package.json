@@ -34,6 +34,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"appwrite": "^14.0.1"
+		"appwrite": "^14.0.1",
+		"seedrandom": "^3.0.5"
 	}
 }

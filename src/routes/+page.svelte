@@ -1,11 +1,14 @@
 <script lang="ts">
+  import * as seedrandom from 'seedrandom';
+
 	import type { PageData } from './$types';
 	import Circle from './Circle.svelte';
 	import Separator from './Separator.svelte';
 
 	export let data: PageData;
 
-	const progressMeters = data.document?.meters ?? -1; // Change this to fill progress to 100%
+	let progressMeters = data.document?.meters ?? -1; // Change this to fill progress to 100%
+	progressMeters = 9999;
 
 	const progressUnit = progressMeters > 9999 ? 'Km' : 'Km';
 	const progressUnitDistance = progressMeters > 9999 ? progressMeters / 1000 : progressMeters;
@@ -32,47 +35,67 @@
 		{
 			title: 'Praha',
 			distance: 0,
-			color: 'orange'
+			color: ''
+		},
+		{
+			title: 'Šternov',
+			distance: 51,
+			color: ''
+		},
+		{
+			title: 'Humpolec',
+			distance: 98,
+			color: ''
 		},
 		{
 			title: 'Jihlava',
 			distance: 127,
-			color: 'pink'
+			color: ''
+		},
+		{
+			title: 'Jabloňov',
+			distance: 162,
+			color: ''
+		},
+		{
+			title: 'Domašov',
+			distance: 190,
+			color: ''
 		},
 		{
 			title: 'Brno',
-			distance: 208,
-			color: 'red'
+			distance: 211,
+			color: ''
 		},
 		{
 			title: 'Uherský Brod',
 			distance: 294,
-			color: 'green'
+			color: ''
 		},
 		{
 			title: 'Trenčín',
 			distance: 338,
-			color: 'blue'
+			color: ''
 		},
 		{
 			title: 'Žilina',
 			distance: 412,
-			color: 'red'
+			color: ''
 		},
 		{
 			title: 'Liptovský Mikuláš',
 			distance: 503,
-			color: 'pink'
+			color: ''
 		},
 		{
 			title: 'Poprad',
 			distance: 553,
-			color: 'blue'
+			color: ''
 		},
 		{
 			title: 'Prešov',
 			distance: 625,
-			color: 'green'
+			color: ''
 		},
 		{
 			title: 'Košice',
@@ -80,6 +103,25 @@
 			color: 'gold'
 		}
 	];
+	
+	const colors = ['red' ,'orange' ,'green', 'blue', 'pink'];
+	sections = sections.map((section) => {
+	let color = section.color;
+	
+	
+	if(!color) {
+	const rand = seedrandom.default(section.title + '-2');
+	const n = rand();
+	color = colors[Math.floor(n*colors.length)];
+
+	}
+	
+	section.color = color;
+	
+	return section;
+	})
+	
+	
 
 	const FINAL_METER = 660;
 
