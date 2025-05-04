@@ -8,7 +8,6 @@
 	export let data: PageData;
 
 	let progressMeters = data.document?.meters ?? -1; // Change this to fill progress to 100%
-	progressMeters = 9999;
 
 	const progressUnit = progressMeters > 9999 ? 'Km' : 'Km';
 	const progressUnitDistance = progressMeters > 9999 ? progressMeters / 1000 : progressMeters;
