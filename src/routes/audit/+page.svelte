@@ -50,9 +50,26 @@
 	</div>
 
 	{#each data.documents as activity}
+		{@const startAt = new Date(
+			new Date(activity.$createdAt).getTime() - activity.minutes * 60 * 1000
+		)}
+		{@const year = startAt.getFullYear()}
+		{@const month = startAt.getMonth() + 1}
+		{@const day = startAt.getDate()}
+		{@const hour = startAt.getHours()}
+		{@const minute = startAt.getMinutes()}
+		{@const second = startAt.getSeconds()}
+		{@const endAt = new Date(activity.$createdAt)}
+		{@const yearEndAt = endAt.getFullYear()}
+		{@const monthEndAt = endAt.getMonth() + 1}
+		{@const dayEndAt = endAt.getDate()}
+		{@const hourEndAt = endAt.getHours()}
+		{@const minuteEndAt = endAt.getMinutes()}
+		{@const secondEndAt = endAt.getSeconds()}
+		{@const formattedDate = `${day}.${month}.${year} ${hour < 10 ? '0' + hour : hour}:${minute < 10 ? '0' + minute : minute}:${second < 10 ? '0' + second : second} to ${dayEndAt}.${monthEndAt}.${yearEndAt} ${hourEndAt < 10 ? '0' + hourEndAt : hourEndAt}:${minuteEndAt < 10 ? '0' + minuteEndAt : minuteEndAt}:${secondEndAt < 10 ? '0' + secondEndAt : secondEndAt}`}
 		<div class="p-3 rounded-lg border-[2px] border-[#364750] bg-[#131f24] text-[#6e848e]">
 			<p class="text-sm uppercase font-bold text-[#6e848e] text-opacity-50 tracking-wide">
-				{timeDifference(Date.now(), new Date(activity.$createdAt).getTime())}
+				{formattedDate}
 			</p>
 			<p class="text-lg mt-1">
 				<span class="text-white break-keep" style="white-space:nowrap;">{activity.name}</span> was
