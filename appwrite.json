@@ -102,6 +102,7 @@
 			"$id": "fetchForestData",
 			"name": "fetchForestData",
 			"runtime": "node-18.0",
+			"specification": "s-0.5vcpu-512mb",
 			"execute": [],
 			"events": [],
 			"schedule": "* * * * *",
