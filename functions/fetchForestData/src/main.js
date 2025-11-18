@@ -27,6 +27,8 @@ export default async ({ req, res }) => {
 		const minutes = response.data.total_minute;
 		const name = response.data.name ?? 'Unnamed';
 
+		let diff = minutes;
+
 		try {
 			const oldDocument = await databases.getDocument('main', 'forestData', forestId);
 
@@ -37,13 +39,14 @@ export default async ({ req, res }) => {
 				});
 
 				const minutesBefore = oldDocument.minutes;
+				diff = minutes - minutesBefore;
 				await databases.createDocument('main', 'audit', ID.unique(), {
 					userId: forestId,
 					name,
-					minutes: minutes - minutesBefore,
+					minutes: diff,
 				});
 
-				await discordNotification(minutes, name);
+				await discordNotification(diff, name);
 			}
 		} catch (err) {
 			await databases.createDocument('main', 'forestData', forestId, {
@@ -52,14 +55,13 @@ export default async ({ req, res }) => {
 				name,
 			});
 
-			const minutesBefore = 0;
 			await databases.createDocument('main', 'audit', ID.unique(), {
 				userId: forestId,
 				name,
-				minutes: minutes - minutesBefore,
+				minutes: diff,
 			});
 
-			await discordNotification(minutes, name);
+			await discordNotification(diff, name);
 		}
 	}
 
@@ -67,8 +69,7 @@ export default async ({ req, res }) => {
 };
 
 const discordNotification = async (minutes, name) => {
-	const webhookUrl =
-		'https://discord.com/api/webhooks/1440073944794402816/UXZ_icvGw87j4rJYs-Y2BcnolI1LBVCvrv42TvlX--aaygrg9IAnTw1tsv2LeKbeiVog';
+	const webhookUrl = process.env.DISCORD_WEBHOOK;
 
 	let pingMatej = name === 'Diana Mohamedová' || name === 'annnnyyýya';
 	let pingAnet = name === 'Diana Mohamedová';
@@ -82,11 +83,10 @@ const discordNotification = async (minutes, name) => {
 	}
 
 	const payload = {
-		content: null,
+		content: pings.map((id) => `<@${id}>`).join(' '),
 		embeds: [
 			{
 				title: `[${minutes}min] ${name} planted a tree 🌳`,
-				description: pings.map((id) => `<@${id}>`).join(' '),
 				color: 1547019,
 			},
 		],
